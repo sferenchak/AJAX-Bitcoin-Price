@@ -1,17 +1,31 @@
-var btn = document.querySelector("button");
-var priceDisplay = document.querySelector("#price");
+const controls = document.querySelector(".controls");
+const priceDisplay = document.querySelector("#price");
+var currency = "USD";
 
-btn.addEventListener('click', function() {
-    const XHR = new XMLHttpRequest();
+controls.addEventListener("click", function(event) {
+  let elementClicked = event.target;
 
-    XHR.onreadystatechange = function() {
-        if (XHR.readyState == 4 && XHR.status == 200) {
-            let price = JSON.parse(XHR.responseText).bpi.USD.rate;
-            priceDisplay.innerHTML = price + " USD";
-        }
-    }
+  if (elementClicked.nodeName === "BUTTON") {
+    getData();
+  } else if (elementClicked.type === "radio") {
+    currency = elementClicked.value;
+  }
+});
 
-    XHR.open("GET", "https://api.coindesk.com/v1/bpi/currentprice.json");
-    XHR.send();
-})
+const getData = function() {
+  const url = "https://api.coindesk.com/v1/bpi/currentprice.json";
 
+  fetch(url)
+    .then(res => {
+      return res.json();
+    })
+    .then(data => {
+      let price = data.bpi[currency].rate;
+      priceDisplay.innerHTML = `${price} ${currency}`;
+    })
+    .catch(err => {
+      console.log("There was an error...", err);
+    });
+};
+
+const setCurrency = function() {};

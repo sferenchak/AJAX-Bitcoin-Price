@@ -9,8 +9,16 @@
   </head>
   <body>
     <h1>Bitcoin Current Price is: <span id="price"></span></h1>
-
-    <button>Refresh Data</button>
+    <div class="controls">
+      <span>Select the currency:</span>
+        <input type="radio" id="USD" name="currency" value="USD" checked>
+        <label for="USD">USD</label>
+        <input type="radio" id="GBP" name="currency" value="GBP">
+        <label for="GBP">GBP</label>
+        <input type="radio" id="EUR" name="currency" value="EUR">
+        <label for="EUR">EUR</label>
+      <button>Refresh Data</button>
+    </div>
     <script src="main.js"></script>
   </body>
 </html>
