@@ -30,5 +30,3 @@ const getData = function() {
       console.log("There was an error...", err);
     });
 };
-
-const setCurrency = function() {};
