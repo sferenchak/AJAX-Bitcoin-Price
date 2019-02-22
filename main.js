@@ -18,7 +18,7 @@ const getData = function() {
   fetch(url)
     .then(res => {
       if (!res.ok) {
-        throw Error(404);
+        throw Error(res.status);
       }
       return res.json();
     })
